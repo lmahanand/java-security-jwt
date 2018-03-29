@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RestController {
     @GetMapping
     public String serverStatus(){
-        return "Server is up and running!";
+        return "JWT secured resource!";
     }
 }
