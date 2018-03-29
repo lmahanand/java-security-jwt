@@ -19,6 +19,7 @@ public class TokenController {
 
     @PostMapping
     public String generateToken(@RequestBody final JWTUser jwtUser){
+        //For the sake of brevity user id and password are hard coded.
         if(jwtUser.getUsername().isEmpty() || jwtUser.getPassword().isEmpty()){
             throw new RuntimeException("Please provide username and password.");
         }
