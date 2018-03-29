@@ -1,5 +1,7 @@
 package io.gopulu.javasecurityjwt.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -13,8 +15,9 @@ import java.io.IOException;
  */
 
 public class JwtSuccessHandler implements AuthenticationSuccessHandler{
+    private static final Logger logger = LoggerFactory.getLogger(JwtSuccessHandler.class);
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        System.out.println("Authentication Successful!!");
+        logger.info("Authentication Successful!!");
     }
 }

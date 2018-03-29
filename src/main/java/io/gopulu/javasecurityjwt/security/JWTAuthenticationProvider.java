@@ -3,6 +3,8 @@ package io.gopulu.javasecurityjwt.security;
 import io.gopulu.javasecurityjwt.model.JWTAuthenticationToken;
 import io.gopulu.javasecurityjwt.model.JWTUser;
 import io.gopulu.javasecurityjwt.model.JWTUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +23,7 @@ import java.util.List;
  */
 @Component
 public class JWTAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider{
+    private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationProvider.class);
 
     @Autowired
     private JWTValidator jwtValidator;
@@ -39,6 +42,7 @@ public class JWTAuthenticationProvider extends AbstractUserDetailsAuthentication
         JWTUser jwtUser = jwtValidator.validate(token);
 
         if(jwtUser == null){
+            logger.error("JWT Token is incorrect");
             throw new RuntimeException("JWT Token is incorrect");
         }
 

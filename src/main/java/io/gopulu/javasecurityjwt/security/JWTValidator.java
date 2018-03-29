@@ -3,6 +3,8 @@ package io.gopulu.javasecurityjwt.security;
 import io.gopulu.javasecurityjwt.model.JWTUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JWTValidator {
+    private static final Logger logger = LoggerFactory.getLogger(JWTValidator.class);
     public JWTUser validate(String token) {
 
         JWTUser jwtUser = null;
@@ -28,7 +31,7 @@ public class JWTValidator {
 
             jwtUser.setPassword((String)body.get("password"));
         }catch (Exception ex){
-            System.out.println(ex.getStackTrace());
+            logger.error("JWTUser validation error: "+ ex.getMessage());
         }
 
 
