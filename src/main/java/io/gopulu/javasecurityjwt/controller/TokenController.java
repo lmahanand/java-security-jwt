@@ -19,7 +19,15 @@ public class TokenController {
 
     @PostMapping
     public String generateToken(@RequestBody final JWTUser jwtUser){
+        if(jwtUser.getUsername().isEmpty() || jwtUser.getPassword().isEmpty()){
+            throw new RuntimeException("Please provide username and password.");
+        }
+
+        if(jwtUser.getUsername().equals("admin") && jwtUser.getPassword().equals("123"))
         return jwtGenerator.generate(jwtUser);
+        else {
+            throw new RuntimeException("Invalid credentials.");
+        }
     }
 
 }
